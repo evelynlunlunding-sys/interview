@@ -1,0 +1,2644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trip.com · Indonesia to China Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --trip-blue: #287dea;
+  --trip-blue-deep: #0f4fc2;
+  --trip-blue-soft: #eef5ff;
+  --trip-yellow: #ffb400;
+  --trip-yellow-soft: #fff5d8;
+  --ink: #14213d;
+  --muted: #60708a;
+  --line: rgba(20, 33, 61, 0.10);
+  --white: #ffffff;
+  --panel: rgba(255, 255, 255, 0.92);
+  --danger: #dc5a4f;
+  --danger-soft: #fff1ef;
+  --success: #1f7a5a;
+  --success-soft: #edf9f4;
+  --shadow: 0 18px 48px rgba(21, 68, 151, 0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(40, 125, 234, 0.16), transparent 28%),
+    linear-gradient(180deg, #eff5ff 0%, #f7faff 42%, #f3f6fb 100%);
+  color: var(--ink);
+  margin-left: 236px;
+}
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 236px;
+  background: linear-gradient(180deg, #0d4ab7 0%, #1c72df 72%, #2f88ef 100%);
+  border-right: 1px solid rgba(255,255,255,0.12);
+  padding: 28px 14px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.brand {
+  padding: 0 10px 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+
+.brand-mark {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  box-shadow: 0 14px 24px rgba(10, 31, 77, 0.20);
+}
+
+.brand-mark img { width: 38px; height: 38px; object-fit: contain; }
+
+.brand-kicker,
+.nav-label,
+.eyebrow,
+.mini-label,
+.chain-step-index {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.brand-kicker { color: rgba(255,255,255,0.64); margin-bottom: 8px; }
+
+.brand-title {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.nav-group { margin-bottom: 10px; }
+
+.nav-label {
+  color: rgba(255,255,255,0.46);
+  padding: 8px 10px 6px;
+  display: block;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1.35;
+  padding: 9px 10px;
+  border-radius: 12px;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  transform: translateX(1px);
+}
+
+.nav-item.active {
+  background: #fff;
+  color: var(--trip-blue);
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(10, 35, 86, 0.14);
+}
+
+.nav-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.75);
+}
+
+.page {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 34px 34px 90px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0e4ec0 0%, #287dea 58%, #57a2ff 100%);
+  border-radius: 30px;
+  padding: 42px 42px 34px;
+  color: #fff;
+  box-shadow: 0 28px 56px rgba(40, 125, 234, 0.20);
+  margin-bottom: 30px;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.hero::before {
+  width: 300px;
+  height: 300px;
+  right: -90px;
+  top: -120px;
+  background: rgba(255,255,255,0.08);
+}
+
+.hero::after {
+  width: 220px;
+  height: 220px;
+  right: 70px;
+  bottom: -90px;
+  background: rgba(255,180,0,0.18);
+}
+
+.hero-top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.hero-mark {
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 24px rgba(12, 44, 105, 0.18);
+}
+
+.hero-mark img { width: 40px; height: 40px; object-fit: contain; }
+
+.hero-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.70);
+}
+
+.hero-title {
+  position: relative;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  max-width: 900px;
+  margin-bottom: 18px;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--trip-yellow);
+}
+
+.hero-sub {
+  position: relative;
+  max-width: 760px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.84);
+}
+
+.hero-thesis {
+  position: relative;
+  margin-top: 22px;
+  max-width: 760px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  padding: 16px 18px;
+}
+
+.hero-thesis .mini-label { color: rgba(255,255,255,0.62); margin-bottom: 8px; }
+.hero-thesis strong {
+  display: block;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.task-switcher {
+  display: inline-flex;
+  gap: 8px;
+  padding: 8px;
+  margin-top: 22px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.task-btn {
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.72);
+  padding: 13px 22px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  min-height: 50px;
+}
+
+.task-btn.active {
+  background: #fff;
+  color: var(--trip-blue);
+  font-weight: 700;
+  box-shadow: 0 12px 24px rgba(10, 35, 86, 0.16);
+}
+
+.task-hidden { display: none !important; }
+
+.section {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  margin-bottom: 26px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.section-header {
+  padding: 28px 30px 0;
+}
+
+.eyebrow {
+  color: var(--trip-blue);
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 10px;
+}
+
+.section-sub {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+
+.section-body {
+  padding: 0 30px 30px;
+}
+
+.panel {
+  background: #f8fbff;
+  border: 1px solid rgba(40,125,234,0.10);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.panel.soft-yellow {
+  background: var(--trip-yellow-soft);
+  border-color: rgba(255,180,0,0.18);
+}
+
+.panel.soft-green {
+  background: var(--success-soft);
+  border-color: rgba(31,122,90,0.16);
+}
+
+.panel.soft-red {
+  background: var(--danger-soft);
+  border-color: rgba(220,90,79,0.16);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.stat {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.stat .mini-label { color: var(--muted); margin-bottom: 8px; }
+
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+}
+
+.stat-text {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.logic-chain {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 18px;
+}
+
+.chain {
+  background: linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+  border: 1px solid rgba(40,125,234,0.12);
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.chain-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.chain-step {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 0;
+}
+
+.chain-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 38px;
+  bottom: -6px;
+  width: 1px;
+  background: rgba(40,125,234,0.18);
+}
+
+.chain-step-index {
+  width: 18px;
+  flex-shrink: 0;
+  color: var(--trip-blue);
+  padding-top: 2px;
+}
+
+.chain-step-body strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.chain-step-body span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.thesis-card {
+  background: linear-gradient(180deg, rgba(40,125,234,0.06) 0%, rgba(255,255,255,0.96) 100%);
+  border: 1px solid rgba(40,125,234,0.12);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.thesis-card .mini-label { color: var(--trip-blue); margin-bottom: 10px; }
+
+.thesis-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+}
+
+.thesis-note {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bullet {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.bullet::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--trip-blue);
+  margin-top: 9px;
+  flex-shrink: 0;
+}
+
+.because-box {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.because-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.because-line {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.because-line strong { color: var(--ink); }
+
+.trip-band {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.trip-item {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  padding: 14px;
+}
+
+.trip-item.price-blue { border-left: 4px solid var(--trip-blue); }
+.trip-item.price-yellow { border-left: 4px solid var(--trip-yellow); }
+.trip-item.price-green { border-left: 4px solid var(--success); }
+
+.trip-item strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.trip-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.trip-item em {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  letter-spacing: -0.04em;
+  color: var(--trip-blue);
+}
+
+.afford-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 110px;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.afford-row + .afford-row { margin-top: 10px; }
+
+.afford-row.reachable { border-left: 4px solid var(--success); }
+.afford-row.stretch { border-left: 4px solid var(--trip-yellow); }
+.afford-row.out { border-left: 4px solid var(--danger); }
+
+.afford-name strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.afford-name span,
+.afford-range,
+.afford-note {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.afford-score {
+  text-align: right;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  letter-spacing: -0.04em;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.time-row {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 14px;
+  align-items: start;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.time-year {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  color: var(--trip-blue);
+}
+
+.time-row strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.time-row p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.behavior-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.behavior-table th,
+.behavior-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.behavior-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: #f8fbff;
+}
+
+.behavior-table tr:last-child td { border-bottom: none; }
+.behavior-table tr.highlight td { background: rgba(40,125,234,0.06); }
+
+.behavior-stack {
+  background: linear-gradient(180deg, #f8fbff 0%, #fdfefe 100%);
+  border: 1px solid rgba(40,125,234,0.10);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.behavior-stack-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--trip-blue);
+  margin-bottom: 14px;
+}
+
+.behavior-stack-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.behavior-arrow-flow {
+  display: grid;
+  grid-template-columns: 1fr 52px 1fr 52px 1fr;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.behavior-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: rgba(40,125,234,0.45);
+}
+
+.behavior-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: 0 10px 20px rgba(21, 68, 151, 0.04);
+}
+
+.behavior-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.behavior-year {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  color: var(--trip-blue);
+  line-height: 1;
+}
+
+.behavior-card strong {
+  display: block;
+  font-size: 22px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.behavior-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+  max-width: 820px;
+}
+
+.behavior-metric {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--trip-blue);
+  margin-bottom: 10px;
+}
+
+.behavior-filter-wrap {
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border: 1px solid rgba(40,125,234,0.10);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.behavior-filter-head {
+  display: grid;
+  grid-template-columns: 150px 230px 130px 1fr;
+  gap: 16px;
+  padding: 0 4px 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 10px;
+}
+
+.behavior-filter-head div {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.behavior-filter-row {
+  display: grid;
+  grid-template-columns: 150px 230px 130px 1fr;
+  gap: 16px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.behavior-filter-row:last-child {
+  border-bottom: none;
+}
+
+.behavior-filter-row.highlight {
+  background: rgba(40,125,234,0.06);
+  border-radius: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
+  margin: 0 -10px;
+}
+
+.behavior-type {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.behavior-desc {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.behavior-fit {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.behavior-fit.low { color: var(--danger); }
+.behavior-fit.mid { color: #af7700; }
+.behavior-fit.high { color: var(--trip-blue); }
+
+.behavior-reason {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.behavior-keep-group {
+  display: grid;
+  grid-template-columns: 380px 130px 1fr;
+  gap: 16px;
+  margin-top: 10px;
+  background: rgba(40,125,234,0.06);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.behavior-keep-left {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+
+.behavior-keep-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.behavior-reason ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.behavior-reason li + li {
+  margin-top: 4px;
+}
+
+.matrix-col-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.matrix-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 36px;
+  padding-left: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.afford-table-wrap {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.afford-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.afford-table th,
+.afford-table td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.afford-table th {
+  background: #f8fbff;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.afford-table tr:last-child td {
+  border-bottom: none;
+}
+
+.afford-table .group-row td {
+  background: #f6f9ff;
+  color: var(--ink);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 18px;
+}
+
+.afford-table .group-row.group-green td {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.afford-table .group-row.group-yellow td {
+  background: var(--trip-yellow-soft);
+  color: #af7700;
+}
+
+.afford-table .group-row.group-red td {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.afford-table .summary-row td {
+  background: #fbfdff;
+}
+
+.afford-class strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.afford-pop-label {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.afford-pop-main {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.afford-pop-sub {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.afford-annual {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.afford-annual span {
+  color: var(--muted);
+}
+
+.afford-trip-share {
+  text-align: right;
+}
+
+.afford-trip-share strong {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.afford-trip-share span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.segment-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.segment-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.segment-top strong {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.segment-size {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 34px;
+  color: var(--trip-blue);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.tag {
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1;
+  background: var(--trip-blue-soft);
+  color: var(--trip-blue);
+  border: 1px solid rgba(40,125,234,0.12);
+}
+
+.advantage-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+}
+
+.advantage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adv-row {
+  display: grid;
+  grid-template-columns: 180px 120px 1fr;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 16px;
+  align-items: start;
+}
+
+.adv-row strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.stars { color: var(--trip-blue); font-size: 18px; letter-spacing: 0.08em; }
+
+.matrix {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.matrix-header,
+.matrix-row {
+  display: grid;
+  grid-template-columns: 160px repeat(4, 1fr);
+}
+
+.matrix-header {
+  background: #10213f;
+  color: #fff;
+}
+
+.matrix-header div,
+.matrix-row div {
+  padding: 14px 16px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.matrix-header div {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.matrix-row:nth-child(even) { background: #f8fbff; }
+
+.matrix-row div:not(:first-child) {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: var(--trip-blue);
+}
+
+.mapping-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mapping-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.mapping-head {
+  padding: 14px 16px;
+  background: var(--danger-soft);
+  border-bottom: 1px solid rgba(220,90,79,0.12);
+}
+
+.mapping-head strong,
+.mapping-body strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.mapping-head span,
+.mapping-body span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.mapping-body {
+  padding: 14px 16px;
+  background: var(--success-soft);
+}
+
+.campaign-banner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+}
+
+.theme-card {
+  background: linear-gradient(135deg, #0f4fc2 0%, #287dea 100%);
+  color: #fff;
+  border-radius: 22px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-card::after {
+  content: "";
+  position: absolute;
+  right: -36px;
+  bottom: -36px;
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: rgba(255,180,0,0.24);
+}
+
+.theme-line {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  margin: 10px 0 14px;
+}
+
+.theme-line span { color: var(--trip-yellow); }
+
+.theme-sub {
+  position: relative;
+  color: rgba(255,255,255,0.84);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.value-card {
+  background: #fff;
+  border: 1px solid rgba(40,125,234,0.12);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.value-card strong {
+  display: block;
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.chip {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: var(--trip-blue-soft);
+  color: var(--trip-blue);
+  border: 1px solid rgba(40,125,234,0.12);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.journey-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.journey-card strong {
+  display: block;
+  font-size: 16px;
+  margin: 8px 0 10px;
+}
+
+.journey-card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.season-grid,
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.season-card,
+.metric-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.season-card strong,
+.metric-card strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.season-card p,
+.metric-card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.source-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.source-row a {
+  text-decoration: none;
+  color: var(--trip-blue);
+  border-bottom: 1px solid rgba(40,125,234,0.22);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+}
+
+.campaign-frame {
+  margin-bottom: 16px;
+  background: linear-gradient(180deg, rgba(40,125,234,0.06) 0%, rgba(255,255,255,0.96) 100%);
+  border: 1px solid rgba(40,125,234,0.12);
+}
+
+.campaign-frame strong {
+  display: block;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.theme-kicker {
+  position: relative;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 8px;
+}
+
+.theme-kicker::after {
+  content: "";
+  width: 42px;
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+}
+
+.theme-support {
+  position: relative;
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.92);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.value-thesis {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.value-sub {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.chip.emphasis {
+  background: rgba(255,180,0,0.14);
+  border-color: rgba(255,180,0,0.22);
+  color: #8f6200;
+}
+
+.mechanic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mechanic-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 16px 32px rgba(10, 31, 77, 0.05);
+}
+
+.mechanic-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mechanic-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.mechanic-badge {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: var(--trip-blue-soft);
+  color: var(--trip-blue);
+  border: 1px solid rgba(40,125,234,0.12);
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.mechanic-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mechanic-pane {
+  background: #f8fbff;
+  border: 1px solid rgba(40,125,234,0.10);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.mechanic-pane strong {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.mechanic-pane p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.mechanic-takeaway {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, rgba(40,125,234,0.07) 0%, rgba(255,180,0,0.08) 100%);
+  border: 1px solid rgba(40,125,234,0.12);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.mechanic-takeaway strong { color: var(--trip-blue); }
+
+.journey-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.journey-card {
+  display: grid;
+  grid-template-columns: 90px 150px 1fr 1fr 150px;
+  gap: 14px;
+  align-items: start;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.journey-stage {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--trip-blue);
+}
+
+.journey-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.journey-block strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.journey-block p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.journey-kpi {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(40,125,234,0.05);
+  border: 1px solid rgba(40,125,234,0.1);
+}
+
+.season-card {
+  padding: 20px;
+}
+
+.season-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.season-objective {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: var(--trip-blue-soft);
+  color: var(--trip-blue);
+  border: 1px solid rgba(40,125,234,0.12);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.metric-hero {
+  background: linear-gradient(135deg, rgba(40,125,234,0.06) 0%, rgba(255,255,255,1) 60%);
+  border: 1px solid rgba(40,125,234,0.12);
+  border-radius: 22px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.metric-hero-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 44px;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  color: var(--trip-blue);
+  margin: 8px 0 10px;
+}
+
+.metric-support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.metric-card li {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+@media (max-width: 1200px) {
+  .logic-chain,
+  .advantage-grid,
+  .campaign-banner,
+  .mechanic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-grid,
+  .season-grid,
+  .metric-grid,
+  .metric-support-grid,
+  .stat-grid,
+  .grid-3,
+  .grid-2,
+  .mapping-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mechanic-split,
+  .journey-card {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-band { grid-template-columns: 1fr; }
+  .behavior-arrow-flow {
+    grid-template-columns: 1fr;
+  }
+  .behavior-arrow {
+    transform: rotate(90deg);
+    min-height: 28px;
+  }
+}
+
+@media (max-width: 980px) {
+  body { margin-left: 0; }
+  .sidebar {
+    position: static;
+    width: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .page { padding: 18px; }
+  .matrix-header,
+  .matrix-row,
+  .adv-row,
+  .afford-row,
+  .campaign-banner,
+  .logic-chain {
+    grid-template-columns: 1fr;
+  }
+  .journey-grid,
+  .metric-support-grid,
+  .mechanic-grid,
+  .journey-card,
+  .mechanic-split { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">
+      <img src="/Users/yilunding/Downloads/trip-logo.svg" alt="Trip.com logo">
+    </div>
+    <div class="brand-kicker">Trip.com · Strategy</div>
+    <div class="brand-title">Indonesia → China<br>Decision Funnel</div>
+  </div>
+
+  <div class="nav-group" data-task-nav="task1">
+    <span class="nav-label">Task 1</span>
+    <a class="nav-item active" href="#scope"><span class="nav-dot"></span>1. Scope</a>
+    <a class="nav-item" href="#affordability"><span class="nav-dot"></span>2. Who Can Travel</a>
+    <a class="nav-item" href="#behavior"><span class="nav-dot"></span>3. Who Uses OTA</a>
+    <a class="nav-item" href="#target"><span class="nav-dot"></span>4. Target Segment</a>
+    <a class="nav-item" href="#pain-strategy"><span class="nav-dot"></span>5. Pain Points &amp; Strategy</a>
+    <a class="nav-item" href="#proof"><span class="nav-dot"></span>6. Metrics</a>
+  </div>
+
+  <div class="nav-group task-hidden" data-task-nav="task2">
+    <span class="nav-label">Task 2</span>
+    <a class="nav-item" href="#campaign-theme"><span class="nav-dot"></span>1. Theme</a>
+    <a class="nav-item" href="#campaign-mechanics"><span class="nav-dot"></span>2. Mechanics</a>
+    <a class="nav-item" href="#campaign-journey"><span class="nav-dot"></span>3. Journey</a>
+    <a class="nav-item" href="#campaign-seasonality"><span class="nav-dot"></span>4. Seasonality</a>
+    <a class="nav-item" href="#campaign-metrics"><span class="nav-dot"></span>5. Metrics</a>
+  </div>
+</nav>
+
+<main class="page">
+  <section class="hero">
+    <div class="hero-top">
+      <div class="hero-mark">
+        <img src="/Users/yilunding/Downloads/trip-logo.svg" alt="Trip.com logo">
+      </div>
+      <div class="hero-kicker">Trip.com · Indonesia China Growth Case</div>
+    </div>
+    <h1 class="hero-title">China is hard <em>and</em><br>Trip.com makes it possible.</h1>
+    <p class="hero-sub">This website is structured as a decision funnel: first prove who matters, then show why Trip.com wins, and finally translate that logic into a focused campaign plan.</p>
+    <div class="hero-thesis">
+      <div class="mini-label">Core thesis</div>
+      <strong>For middle-class hybrid travelers, Trip.com is not just a better OTA. It is the platform that removes enough friction to make a China trip actually bookable.</strong>
+    </div>
+    <div class="task-switcher">
+      <button class="task-btn active" type="button" data-task-trigger="task1">Task 1 Market Logic</button>
+      <button class="task-btn" type="button" data-task-trigger="task2">Task 2 Campaign Plan</button>
+    </div>
+  </section>
+
+  <section class="section" id="scope" data-task="task1">
+    <div class="section-header">
+      <div class="eyebrow">Task 1 · Step 1</div>
+      <h2 class="section-title">Scope</h2>
+      <p class="section-sub">Focus on high-intent OTA users planning trips to China. Goal: improve conversion by reducing friction in booking.</p>
+    </div>
+  </section>
+
+  <section class="section" id="affordability" data-task="task1">
+    <div class="section-header">
+      <div class="eyebrow">Task 1 · Step 2</div>
+      <h2 class="section-title">Filter 1: Who Can Travel</h2>
+      <p class="section-sub">Affordability is the first filter. A China trip requires real disposable income, so not every traveler in Indonesia is relevant for this case.</p>
+    </div>
+    <div class="section-body">
+      <div class="panel">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:16px;">
+          <div>
+            <div class="mini-label" style="color:var(--trip-blue); margin-bottom:8px;">Market filter</div>
+            <div class="because-title" style="font-size:28px; margin-bottom:8px;">Affordability</div>
+            <div class="because-line" style="max-width:760px;">Trip affordability is the first filter. Indonesia's average household size is 4.71, so a household lens matters. Instead of using the full-household upper bound, we use a conservative travel-party estimate of about Rp 25M for two travelers with some shared hotel cost.</div>
+          </div>
+          <div class="mini-label" style="color:var(--muted); white-space:nowrap; padding-top:6px;">BPS SUSENAS Sep 2024</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.72); border:1px solid var(--line); border-radius:16px; padding:16px; margin-bottom:14px;">
+          <div class="mini-label" style="color:var(--muted); margin-bottom:10px;">How much is a China trip?</div>
+          <div class="trip-band">
+            <div class="trip-item price-blue">
+              <strong>Budget package · 8D</strong>
+              <span>Flight + hotel + meals + guide</span>
+              <em>Rp 10–14M</em>
+            </div>
+            <div class="trip-item price-yellow">
+              <strong>Mid-range · 8–10D</strong>
+              <span>Halal options · 4★ hotel</span>
+              <em>Rp 15–22M</em>
+            </div>
+            <div class="trip-item price-green">
+              <strong>FIT self-planned · 7–8D</strong>
+              <span>Flight + hotel + on-ground</span>
+              <em>Rp 11–21M</em>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-top:10px;">
+            <div class="stat" style="display:flex; align-items:center; gap:12px;">
+              <div class="stat-value" style="font-size:22px; color:var(--ink); margin-bottom:0;">Rp 15M</div>
+              <div class="stat-text">baseline used<br>per traveler · ~¥6,800</div>
+            </div>
+            <div class="stat" style="display:flex; align-items:center; gap:12px; background:var(--trip-yellow-soft); border-color:rgba(255,180,0,0.18);">
+              <div class="stat-value" style="font-size:22px; color:#af7700; margin-bottom:0;">Rp 25M</div>
+              <div class="stat-text">conservative household lens<br>2 travelers + shared stay</div>
+            </div>
+          </div>
+          <div class="afford-note" style="margin-top:8px;">Source: Joglo Wisata, Callista Tour, Sentosa Wisata (2024–25 listed prices)</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.65); border:1px solid var(--line); border-radius:16px; padding:16px;">
+          <div class="mini-label" style="color:var(--muted); margin-bottom:12px;">Rp 25M conservative household trip</div>
+
+          <div class="afford-table-wrap">
+            <table class="afford-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Population share</th>
+                  <th>Annual household expenditure</th>
+                  <th>Trip cost as % of annual spend</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="group-row group-green">
+                  <td colspan="4">Directly addressable now</td>
+                </tr>
+                <tr>
+                  <td class="afford-class"><strong>Affluent</strong></td>
+                  <td>
+                    <span class="afford-pop-main" style="color:var(--success);">0.46%</span>
+                    <span class="afford-pop-sub">1.29M people</span>
+                  </td>
+                  <td class="afford-annual">&gt; Rp 572.4M / year<br><span>(~¥264K)</span></td>
+                  <td class="afford-trip-share">
+                    <strong style="color:var(--success);">&lt;4.4%</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="afford-class"><strong>Middle class</strong></td>
+                  <td>
+                    <span class="afford-pop-main" style="color:var(--trip-blue);">17.13%</span>
+                    <span class="afford-pop-sub">47.85M people · ↓ −9.48M since 2019</span>
+                  </td>
+                  <td class="afford-annual">Rp 117.6M–572.4M / year<br><span>(~¥48K–¥264K)</span></td>
+                  <td class="afford-trip-share">
+                    <strong style="color:var(--trip-blue);">4–21%</strong>
+                  </td>
+                </tr>
+                <tr class="group-row group-yellow">
+                  <td colspan="4">Heavy stretch / assistance needed</td>
+                </tr>
+                <tr>
+                  <td class="afford-class"><strong>Aspiring middle</strong></td>
+                  <td>
+                    <span class="afford-pop-main" style="color:#af7700;">49.29%</span>
+                    <span class="afford-pop-sub">137.5M people · ↑ +8.65M since 2019</span>
+                  </td>
+                  <td class="afford-annual">Rp 50.4M–117.6M / year<br><span>(~¥24K–¥48K)</span></td>
+                  <td class="afford-trip-share">
+                    <strong style="color:#af7700;">21–50%</strong>
+                  </td>
+                </tr>
+                <tr class="group-row group-red">
+                  <td colspan="4">Out of reach</td>
+                </tr>
+                <tr>
+                  <td class="afford-class"><strong>Vulnerable</strong></td>
+                  <td>
+                    <span class="afford-pop-main" style="color:var(--danger);">24.42%</span>
+                    <span class="afford-pop-sub">68.51M people</span>
+                  </td>
+                  <td class="afford-annual">Rp 33.6M–50.4M / year<br><span>(~¥12K–¥24K)</span></td>
+                  <td class="afford-trip-share">
+                    <strong style="color:var(--danger);">50–74%</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="afford-class"><strong>Poor</strong></td>
+                  <td>
+                    <span class="afford-pop-main" style="color:var(--danger); opacity:0.6;">8.57%</span>
+                    <span class="afford-pop-sub">24.06M people</span>
+                  </td>
+                  <td class="afford-annual">&lt; Rp 33.6M / year<br><span>(~¥12K)</span></td>
+                  <td class="afford-trip-share">
+                    <strong style="color:var(--danger); opacity:0.6;">&gt;74%</strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:16px;">
+          <div class="because-title" style="margin-bottom:8px;">Conclusion</div>
+          <div style="display:grid; grid-template-columns:220px 1fr; gap:18px; align-items:center;">
+            <div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--success); margin-bottom:6px;">Affordable classes combined</div>
+              <div style="font-family:'Space Grotesk',sans-serif; font-size:52px; line-height:0.9; letter-spacing:-0.06em; color:var(--success); margin-bottom:6px;">17.59%</div>
+              <div style="font-size:18px; color:var(--ink); font-weight:600;">49.14M people</div>
+            </div>
+            <div style="font-size:22px; line-height:1.45; color:var(--ink); letter-spacing:-0.02em;">
+              This is the population with the clearest near-term ability to absorb and potentially pay for a China trip.
+            </div>
+          </div>
+        </div>
+
+        <div class="source-row">
+          <a href="https://www.bps.go.id/en/news/2025/05/02/702/understanding-the-differences-in-poverty-rates-reported-by-the-world-bank-and-statistics-indonesia--bps-.html" target="_blank">↗ BPS May 2025 press release</a>
+          <a href="https://www.bps.go.id/" target="_blank">↗ BPS SUSENAS Sep 2024</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="behavior" data-task="task1">
+    <div class="section-header">
+      <div class="eyebrow">Task 1 · Step 3</div>
+      <h2 class="section-title">Filter 2: Who Uses OTA</h2>
+      <p class="section-sub">Behavior determines platform reliance. Not every traveler who can afford China is equally valuable to an OTA.</p>
+    </div>
+    <div class="section-body">
+      <div class="behavior-stack">
+        <div class="behavior-stack-title">Behavior shift over time</div>
+        <div class="behavior-arrow-flow">
+          <div class="behavior-card">
+            <div class="behavior-card-top">
+              <div class="behavior-year">Past</div>
+              <a href="https://eudl.eu/doi/10.4108/eai.7-11-2019.2295244" target="_blank" class="source-link">↗ Azizah et al. 2019</a>
+            </div>
+            <strong>Mass package tours dominated</strong>
+            <div class="behavior-metric">80%+</div>
+            <p>Large, agency-led group travel with minimal user control.</p>
+          </div>
+
+          <div class="behavior-arrow">→</div>
+
+          <div class="behavior-card">
+            <div class="behavior-card-top">
+              <div class="behavior-year">Transition</div>
+              <a href="https://www.ttgasia.com/2023/03/16/indonesia-outbound-travel-bookings-continue-to-surge/" target="_blank" class="source-link">↗ TTG Asia Mar 2023</a>
+            </div>
+            <strong>Shift to smaller, customized groups</strong>
+            <p>Family- and community-based travel grew, with more user involvement in planning and more self-directed research.</p>
+          </div>
+
+          <div class="behavior-arrow">→</div>
+
+          <div class="behavior-card">
+            <div class="behavior-card-top">
+              <div class="behavior-year">Now</div>
+              <a href="https://tgmstatbox.com/topics/travel-behavior/indonesia/" target="_blank" class="source-link">↗ TGM StatBox 2025</a>
+            </div>
+            <strong>DIY + hybrid users now dominate</strong>
+            <div class="behavior-metric"><span style="color:var(--trip-blue);">87%</span></div>
+            <p><span style="color:var(--trip-blue);">48% fully independent + 39% hybrid</span><br>Users take control of planning, but still rely on platforms to execute key components.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="behavior-filter-wrap">
+        <div class="behavior-stack-title">Behavior filter</div>
+        <div class="behavior-filter-head">
+          <div>Behavior</div>
+          <div>Description</div>
+          <div>Decision</div>
+          <div>Reason</div>
+        </div>
+
+        <div class="behavior-filter-row">
+          <div class="behavior-type">Package travelers</div>
+          <div class="behavior-desc">Usually book through local travel agencies or bundled group packages</div>
+          <div class="behavior-fit low">Exclude</div>
+          <div class="behavior-reason">
+            <ul>
+              <li>Relies on local agencies for end-to-end service.</li>
+              <li>Less aligned with Trip.com's platform model.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="behavior-filter-row">
+          <div class="behavior-type">Independent planners</div>
+          <div class="behavior-desc">Plan and book most trip components independently across multiple platforms, using OTAs mainly for search, comparison, and price checking.</div>
+          <div class="behavior-fit high">Keep</div>
+          <div class="behavior-reason">
+            <ul>
+              <li>Still relevant after package travelers are removed.</li>
+              <li>High travel intent and engagement, but lower reliance on platform-led booking paths.</li>
+              <li>More likely to value flexibility and control over bundled convenience.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="behavior-filter-row">
+          <div class="behavior-type">Semi-planners</div>
+          <div class="behavior-desc">Plan the trip independently, but rely on OTA platforms to conveniently complete key trip components such as flight + hotel bundles, curated options, or itinerary support.</div>
+          <div class="behavior-fit high">Keep</div>
+          <div class="behavior-reason">
+            <ul>
+              <li>Still relevant after package travelers are removed.</li>
+              <li>More likely to convert when the platform reduces planning complexity.</li>
+              <li>Better aligned with bundle, upsell, and guided-booking opportunities.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel soft-green" style="margin-top:14px;">
+          <div class="mini-label" style="color:var(--success); margin-bottom:10px;">Output of this filter</div>
+          <div class="because-line">Remove package travelers. Keep independent planners and semi-planners for the next targeting step, with semi-planners highlighted as the higher-conversion opportunity.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="target" data-task="task1">
+    <div class="section-header">
+      <div class="eyebrow">Task 1 · Step 4</div>
+      <h2 class="section-title">Target Segment</h2>
+      <p class="section-sub">After applying the affordability and behavior filters, I further prioritize users based on spending power and planning behavior to identify the most attractive segment.</p>
+    </div>
+    <div class="section-body">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div class="panel">
+          <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Planning behavior comparison</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="because-box">
+              <div class="because-title" style="font-size:18px;">Independent planners</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Can complete the trip on their own.</li>
+                  <li>Use OTA mainly for search and comparison.</li>
+                  <li>Lower platform dependence.</li>
+                  <li>Lower conversion leverage.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="because-box">
+              <div class="because-title" style="font-size:18px;">Semi-planners</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Have travel intent, but still need help completing the trip.</li>
+                  <li>Rely on OTA for key trip components and execution.</li>
+                  <li>Higher platform dependence.</li>
+                  <li>Most responsive to friction reduction.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel soft-green" style="margin-top:10px; padding:12px;">
+            <div class="because-line">The difference is not travel intent, but platform dependency — semi-planners depend on the platform to complete the trip, while independent planners do not.</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Spending power comparison</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="because-box">
+              <div class="because-title" style="font-size:18px;">Affluent</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>High spending power and flexible budget.</li>
+                  <li>Lower dependence on OTA support.</li>
+                  <li>More likely to use concierge, agencies, or direct booking.</li>
+                  <li><strong style="color:var(--ink);">Market size is very small.</strong></li>
+                </ul>
+              </div>
+            </div>
+            <div class="because-box">
+              <div class="because-title" style="font-size:18px;">Middle-class</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Large enough to scale and realistically able to travel.</li>
+                  <li>More dependent on OTA to optimize cost and reduce complexity.</li>
+                  <li>More responsive to pricing, bundling, and planning support.</li>
+                  <li>Stronger conversion potential at scale.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="panel soft-green" style="margin-top:10px; padding:12px;">
+            <div class="because-line">The difference is not just ability to pay, but dependency — affluent users can travel without the platform, while middle-class users rely on the platform to make the trip work.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom:16px;">
+        <div class="mini-label" style="color:var(--trip-blue); margin-bottom:12px;">2×2 prioritization matrix</div>
+        <div>
+          <div style="display:grid; grid-template-columns:140px 1fr 1fr; gap:12px; margin-bottom:12px; align-items:end;">
+            <div></div>
+            <div class="matrix-col-head">Independent planners</div>
+            <div class="matrix-col-head">Semi-planners</div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:140px 1fr 1fr; grid-template-rows:1fr 1fr; gap:12px; min-height:420px;">
+            <div class="matrix-row-head">AFFLUENT</div>
+            <div class="because-box" style="display:flex; flex-direction:column; justify-content:center; min-height:190px;">
+              <div class="because-title" style="font-size:18px;">Affluent + independent planners</div>
+              <div class="because-line">Small and least platform-dependent.</div>
+            </div>
+
+            <div class="because-box" style="display:flex; flex-direction:column; justify-content:center; min-height:190px;">
+              <div class="because-title" style="font-size:18px;">Affluent + semi-planners</div>
+              <div class="because-line">High value, but smaller and less scalable.</div>
+            </div>
+
+            <div class="matrix-row-head">MIDDLE-CLASS</div>
+            <div class="because-box" style="display:flex; flex-direction:column; justify-content:center; min-height:190px;">
+              <div class="because-title" style="font-size:18px;">Middle-class + independent planners</div>
+              <div class="because-line">Large, but lower conversion leverage.</div>
+            </div>
+
+            <div class="because-box" style="display:flex; flex-direction:column; justify-content:center; min-height:190px; border:2px solid rgba(40,125,234,0.26); background:rgba(40,125,234,0.06); position:relative; box-shadow:0 0 0 6px rgba(40,125,234,0.06);">
+              <div style="position:absolute; top:12px; right:12px; padding:6px 10px; border-radius:999px; background:var(--trip-blue); color:#fff; font-size:10px; font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em; text-transform:uppercase;">
+                Primary target
+              </div>
+              <div class="because-title" style="font-size:18px; color:var(--trip-blue);">Middle-class + semi-planners</div>
+              <div class="because-line" style="color:var(--ink); font-weight:600;">Best target: scalable and most convertible.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel soft-green" style="margin-bottom:16px;">
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:28px; line-height:1.05; letter-spacing:-0.04em; color:var(--ink); margin-bottom:12px;">Target user profile (User traits)</div>
+        <div class="behavior-reason" style="font-size:15px;">
+          <ul>
+            <li>Travels with family or small groups.</li>
+            <li>Has a moderate but limited travel budget.</li>
+            <li>Some travel experience, but not an expert planner.</li>
+            <li>Prefers partial planning rather than fully DIY or fully packaged.</li>
+            <li>Relies on multiple sources for information (OTA, social media, search).</li>
+            <li>Has low tolerance for uncertainty and mistakes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pain-strategy" data-task="task1">
+    <div class="section-header">
+      <div class="eyebrow">Task 1 · Step 5</div>
+      <h2 class="section-title">Pain Points & Strategy</h2>
+      <p class="section-sub">These are the key conversion blockers for middle-class semi-planners when traveling to China.</p>
+    </div>
+    <div class="section-body">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="panel" style="padding:0; overflow:hidden;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+            <div style="padding:22px 24px; border-right:1px solid var(--line); background:rgba(225, 83, 75, 0.03);">
+              <div class="mini-label" style="margin-bottom:10px; color:var(--danger);">Pain Point 1</div>
+              <div class="because-title" style="font-size:22px; margin-bottom:12px;">Language barrier and low execution confidence</div>
+              <div class="behavior-reason" style="margin-bottom:10px;">
+                <ul>
+                  <li>Indonesia ranks 80/116 in English proficiency.</li>
+                  <li>China relies heavily on Mandarin-based systems.</li>
+                  <li>Independent navigation is difficult without guidance.</li>
+                </ul>
+              </div>
+              <a href="https://www.ef.com/wwen/epi/" target="_blank" class="source-link">↗ EF EPI 2024</a>
+            </div>
+            <div style="padding:22px 24px; background:rgba(40,125,234,0.03);">
+              <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Trip.com strategy</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Launch Bahasa Indonesia small-group tours at top China destinations (e.g., 1-day guided options).</li>
+                  <li>Focus on key high-friction scenarios (first-time, family, complex cities).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="padding:0; overflow:hidden;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+            <div style="padding:22px 24px; border-right:1px solid var(--line); background:rgba(225, 83, 75, 0.03);">
+              <div class="mini-label" style="margin-bottom:10px; color:var(--danger);">Pain Point 2</div>
+              <div class="because-title" style="font-size:22px; margin-bottom:12px;">Payment access and flexibility gap</div>
+              <div class="behavior-reason" style="margin-bottom:10px;">
+                <ul>
+                  <li>Trip.com lacks key local payment access, especially GoPay.</li>
+                  <li>Only ~5% credit card penetration in Indonesia.</li>
+                  <li>China trips require large upfront payments (~Rp 15M).</li>
+                </ul>
+              </div>
+              <a href="https://www.statista.com/statistics/675303/credit-card-penetration-indonesia/" target="_blank" class="source-link">↗ Statista</a>
+            </div>
+            <div style="padding:22px 24px; background:rgba(40,125,234,0.03);">
+              <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Trip.com strategy</div>
+              <div class="behavior-reason" style="margin-bottom:16px;">
+                <ul>
+                  <li>First integrate GoPay to close the most important local wallet access gap.</li>
+                  <li>Then add PayLater / BNPL options through GoPay PayLater, Kredivo, or Akulaku.</li>
+                </ul>
+              </div>
+              <div style="padding:12px 14px; border-radius:14px; background:rgba(40,125,234,0.05); border:1px solid rgba(40,125,234,0.12); margin-bottom:12px;">
+                <div class="mini-label" style="color:var(--trip-blue); margin-bottom:6px;">Competitive gap</div>
+                <div class="because-line">Traveloka already offers broader local payment access and PayLater, while Trip.com still lacks both layers.</div>
+              </div>
+              <details style="margin-bottom:14px;">
+                <summary style="cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; border:1px solid rgba(40,125,234,0.14); background:#fff; color:var(--trip-blue); font-size:12px; font-family:'IBM Plex Mono',monospace; letter-spacing:0.08em; text-transform:uppercase;">
+                  See Trip.com vs Traveloka payment options
+                </summary>
+                <div style="margin-top:12px; padding:14px; border-radius:16px; border:1px solid rgba(40,125,234,0.12); background:rgba(255,255,255,0.72);">
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                    <div>
+                      <div class="mini-label" style="color:var(--ink); margin-bottom:8px;">Trip.com — Payment methods</div>
+                      <div class="behavior-reason">
+                        <ul>
+                          <li><span style="color:var(--success);">✓</span> Virtual Account (BCA, Mandiri, BRI...)</li>
+                          <li><span style="color:var(--success);">✓</span> Visa / Mastercard / UnionPay</li>
+                          <li><span style="color:var(--success);">✓</span> OVO</li>
+                          <li><span style="color:var(--success);">✓</span> Google Pay</li>
+                          <li><span style="color:var(--danger);">✗</span> GoPay</li>
+                          <li><span style="color:var(--danger);">✗</span> DANA</li>
+                          <li><span style="color:var(--danger);">✗</span> Minimarket (Alfamart etc.)</li>
+                          <li><span style="color:var(--danger); font-weight:700;">✗</span> <strong style="color:var(--danger);">BNPL / PayLater</strong></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="mini-label" style="color:var(--ink); margin-bottom:8px;">Traveloka — Payment methods</div>
+                      <div class="behavior-reason">
+                        <ul>
+                          <li><span style="color:var(--success);">✓</span> Virtual Account (BCA, Mandiri, BRI...)</li>
+                          <li><span style="color:var(--success);">✓</span> Visa / Mastercard / JCB / Amex</li>
+                          <li><span style="color:var(--success);">✓</span> OVO</li>
+                          <li><span style="color:var(--success);">✓</span> GoPay</li>
+                          <li><span style="color:var(--success);">✓</span> Minimarket (Alfamart, Indomaret)</li>
+                          <li><span style="color:var(--success);">✓</span> ATM Bersama / Prima / Alto</li>
+                          <li><span style="color:var(--success);">✓</span> Cicilan Kartu Kredit (up to 12x)</li>
+                          <li><span style="color:var(--success); font-weight:700;">✓</span> <strong style="color:var(--success);">TPayLater (BNPL)</strong></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(40,125,234,0.1);">
+                    <div class="because-line">Traveloka already solves the upfront affordability barrier, while Trip.com does not.</div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="padding:0; overflow:hidden;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+            <div style="padding:22px 24px; border-right:1px solid var(--line); background:rgba(225, 83, 75, 0.03);">
+              <div class="mini-label" style="margin-bottom:10px; color:var(--danger);">Pain Point 3</div>
+              <div class="because-title" style="font-size:22px; margin-bottom:12px;">Infrastructure complexity and planning burden</div>
+              <div class="behavior-reason" style="margin-bottom:10px;">
+                <ul>
+                  <li>Complex high-speed rail booking system.</li>
+                  <li>Fragmented local transport and service platforms.</li>
+                  <li>Users struggle to execute multi-city itineraries.</li>
+                </ul>
+              </div>
+              <a href="https://www.12306.cn/en/index.html" target="_blank" class="source-link">↗ China Railway 12306</a>
+            </div>
+            <div style="padding:22px 24px; background:rgba(40,125,234,0.03);">
+              <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Trip.com strategy</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Turn rail + hotel + itinerary into structured trip templates.</li>
+                  <li>Offer pre-built routes for common China journeys and family travel.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="padding:0; overflow:hidden;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;">
+            <div style="padding:22px 24px; border-right:1px solid var(--line); background:rgba(225, 83, 75, 0.03);">
+              <div class="mini-label" style="margin-bottom:10px; color:var(--danger);">Pain Point 4</div>
+              <div class="because-title" style="font-size:22px; margin-bottom:12px;">Unmet halal travel demand</div>
+              <div class="behavior-reason" style="margin-bottom:10px;">
+                <ul>
+                  <li>89% prioritize halal food availability.</li>
+                  <li>60% willing to pay premium for halal compliance.</li>
+                  <li>Limited visibility of halal-friendly options.</li>
+                </ul>
+              </div>
+              <a href="https://www.gmo-z.com/en/" target="_blank" class="source-link">↗ Vero x GMO-Z.com Research (2025)</a>
+            </div>
+            <div style="padding:22px 24px; background:rgba(40,125,234,0.03);">
+              <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Trip.com strategy</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Add halal filters and visible trust signals across listings.</li>
+                  <li>Offer curated local halal itineraries for major destinations or special tours for Muslim travelers.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel soft-green" style="margin-top:16px;">
+        <div class="because-line"><strong>These frictions prevent high-intent users from converting into bookings.</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proof" data-task="task1">
+    <div class="section-header">
+      <div class="eyebrow">Task 1 · Step 6</div>
+      <h2 class="section-title">How to define the success of the project</h2>
+      <p class="section-sub">Success means improving conversion among target users while reducing the friction that blocks booking.</p>
+    </div>
+    <div class="section-body">
+      <div class="panel" style="margin-bottom:16px; background:rgba(40,125,234,0.04); border-color:rgba(40,125,234,0.14);">
+        <div class="because-title" style="font-size:24px; margin-bottom:12px; color:var(--trip-blue);">North Star Metric</div>
+        <div class="thesis-text" style="font-size:46px; letter-spacing:-0.06em; line-height:0.98; margin-bottom:10px;">High-intent Conversion Rate</div>
+        <div class="because-line" style="font-size:20px; margin-bottom:8px;">bookings / high-intent sessions</div>
+        <div class="afford-note">Measures whether target users complete bookings.</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="panel">
+          <div class="because-title" style="font-size:24px; margin-bottom:14px;">Qualitative Measurement</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div class="because-box">
+              <div class="because-title" style="font-size:20px;">User feedback</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Ease of planning</li>
+                  <li>Confidence in booking</li>
+                </ul>
+              </div>
+            </div>
+            <div class="because-box">
+              <div class="because-title" style="font-size:20px;">Customer support insights</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Fewer support requests</li>
+                  <li>Reduced confusion at key steps</li>
+                </ul>
+              </div>
+            </div>
+            <div class="because-box">
+              <div class="because-title" style="font-size:20px;">Behavior interpretation</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Why users abandon booking</li>
+                  <li>Why users switch platforms</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="afford-note" style="margin-top:12px;">Explains whether user friction is actually reduced.</div>
+        </div>
+
+        <div class="panel">
+          <div class="because-title" style="font-size:24px; margin-bottom:14px;">Quantitative Metrics</div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div class="because-box">
+              <div class="because-title" style="font-size:20px; margin-bottom:10px;">Booking Funnel</div>
+              <div style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr auto 1fr; gap:12px; align-items:center; justify-items:center;">
+                <div class="because-line" style="font-size:18px; text-align:center;">Detail View</div>
+                <div class="mini-label" style="color:var(--trip-blue);">→</div>
+                <div class="because-line" style="font-size:18px; text-align:center;">Add to Cart</div>
+                <div class="mini-label" style="color:var(--trip-blue);">→</div>
+                <div class="because-line" style="font-size:18px; text-align:center;">Checkout</div>
+                <div class="mini-label" style="color:var(--trip-blue);">→</div>
+                <div class="because-line" style="font-size:18px; text-align:center;">Booking</div>
+              </div>
+              <div class="afford-note" style="margin-top:12px;">Conversion rate measures the percentage of users progressing between each step in the funnel.</div>
+            </div>
+
+            <div class="because-box">
+              <div class="because-title" style="font-size:20px;">Friction Signals</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Payment switching rate</li>
+                  <li>Average checkout time</li>
+                  <li>Repeat comparison rate</li>
+                </ul>
+              </div>
+              <div class="afford-note" style="margin-top:10px;">Indicates unresolved friction for target users.</div>
+            </div>
+
+            <div class="because-box">
+              <div class="because-title" style="font-size:20px;">Business Impact</div>
+              <div class="behavior-reason">
+                <ul>
+                  <li>Average Order Value (AOV)</li>
+                  <li>Gross Booking Value (GBV)</li>
+                </ul>
+              </div>
+              <div class="afford-note" style="margin-top:10px;">Ensures conversion improvements translate into revenue impact.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="panel" style="margin-top:16px;">
+        <summary style="cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; border:1px solid rgba(40,125,234,0.14); background:#fff; color:var(--trip-blue); font-size:12px; font-family:'IBM Plex Mono',monospace; letter-spacing:0.08em; text-transform:uppercase;">
+          View strategy-level metrics
+        </summary>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-top:14px;">
+          <div class="panel">
+            <div class="because-title" style="font-size:20px;">Language</div>
+            <div class="behavior-reason"><ul><li>Local tour usage</li><li>Conversion uplift</li></ul></div>
+          </div>
+          <div class="panel">
+            <div class="because-title" style="font-size:20px;">Planning / Itinerary</div>
+            <div class="behavior-reason"><ul><li>Bundle attach rate</li><li>% template usage</li></ul></div>
+          </div>
+          <div class="panel">
+            <div class="because-title" style="font-size:20px;">Halal / Trust</div>
+            <div class="behavior-reason"><ul><li>Filter usage</li><li>Conversion uplift</li></ul></div>
+          </div>
+          <div class="panel">
+            <div class="because-title" style="font-size:20px;">Payment</div>
+            <div class="behavior-reason"><ul><li>Checkout completion rate</li><li>% GoPay / PayLater usage</li></ul></div>
+          </div>
+        </div>
+      </details>
+
+      <div class="because-line" style="margin-top:18px; font-size:18px;"><strong>Success means not only improving conversion, but making it easier for target users to complete bookings.</strong></div>
+    </div>
+  </section>
+
+  <section class="section task-hidden" id="campaign-theme" data-task="task2">
+    <div class="section-header">
+      <div class="eyebrow">Task 2 · Step 1</div>
+      <h2 class="section-title">Campaign Theme & Value Proposition</h2>
+      <p class="section-sub">The campaign is designed for middle-class semi-planners: users who already want to travel, but still need enough simplicity, trust, and affordability to actually complete the booking.</p>
+    </div>
+    <div class="section-body">
+      <div class="panel campaign-frame">
+        <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Campaign logic</div>
+        <strong>Trip.com wins when China feels manageable enough to book.</strong>
+      </div>
+      <div class="campaign-banner">
+        <div class="theme-card">
+          <div class="mini-label theme-kicker">Theme</div>
+          <div class="theme-line">China trip?<br><span>Trip.com.</span></div>
+          <div class="theme-sub">For semi-planners, the job is not to create interest from scratch. It is to turn a complicated destination into a trip that feels simple, safe, and worth committing to.</div>
+          <div class="theme-support">Execution friction is the blocker. The campaign removes it through clearer structure, lower perceived risk, and stronger payment confidence.</div>
+        </div>
+        <div class="value-card">
+          <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Value proposition</div>
+          <div class="value-thesis">We make complex China travel simple, trustworthy, and affordable — all in one place.</div>
+          <p class="value-sub">This works for middle-class semi-planners because it reduces three real blockers at once: planning burden, booking anxiety, and upfront payment pressure.</p>
+          <div class="chip-row">
+            <div class="chip emphasis">Simplicity</div>
+            <div class="chip emphasis">Trust</div>
+            <div class="chip emphasis">Affordability</div>
+            <div class="chip">Semi-planner fit</div>
+            <div class="chip">Family-oriented</div>
+            <div class="chip">Muslim-friendly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section task-hidden" id="campaign-mechanics" data-task="task2">
+    <div class="section-header">
+      <div class="eyebrow">Task 2 · Step 2</div>
+      <h2 class="section-title">Campaign Mechanics</h2>
+      <p class="section-sub">These are not generic tactics. They are strategic levers designed specifically for middle-class semi-planners who need control, reassurance, and better payment confidence.</p>
+    </div>
+    <div class="section-body">
+      <div class="mechanic-grid">
+        <div class="mechanic-card">
+          <div class="mechanic-head">
+            <div>
+              <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Mechanic 1</div>
+              <div class="mechanic-title">Modular Family Bundle Discount</div>
+            </div>
+            <div class="mechanic-badge">Control + savings</div>
+          </div>
+          <div class="mechanic-split">
+            <div class="mechanic-pane">
+              <strong>What it is</strong>
+              <p>Users choose hotels, rail, and tours with some freedom, while the platform automatically turns those choices into a bundled offer.</p>
+            </div>
+            <div class="mechanic-pane">
+              <strong>Why it works</strong>
+              <p>It keeps enough control for semi-planners, adds a visible price advantage, and lowers perceived booking risk through flexible cancellation and disruption protection.</p>
+            </div>
+          </div>
+          <div class="mechanic-takeaway"><strong>Strategic role:</strong> push users toward deeper bundled booking without making the experience feel like a rigid local package.</div>
+        </div>
+        <div class="mechanic-card">
+          <div class="mechanic-head">
+            <div>
+              <div class="mini-label" style="color:var(--trip-blue); margin-bottom:10px;">Mechanic 2</div>
+              <div class="mechanic-title">Muslim Trust Infrastructure</div>
+            </div>
+            <div class="mechanic-badge">Community trust</div>
+          </div>
+          <div class="mechanic-split">
+            <div class="mechanic-pane">
+              <strong>What it is</strong>
+              <p>Use Muslim family creators, halal-focused trip proof, and culturally relevant travel reassurance to make China feel safer and more socially validated.</p>
+            </div>
+            <div class="mechanic-pane">
+              <strong>Why it works</strong>
+              <p>For Muslim family travelers, trust is not built only by the platform. It is borrowed from the community and then reinforced through platform support.</p>
+            </div>
+          </div>
+          <div class="mechanic-takeaway"><strong>Strategic role:</strong> reduce hesitation at the consideration stage, where cultural fit and fear of mistakes can block conversion.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section task-hidden" id="campaign-journey" data-task="task2">
+    <div class="section-header">
+      <div class="eyebrow">Task 2 · Step 3</div>
+      <h2 class="section-title">Distribution & User Journey</h2>
+      <p class="section-sub">The journey should show where semi-planners are, what they worry about, and how Trip.com removes friction step by step.</p>
+    </div>
+    <div class="section-body">
+      <div class="journey-flow">
+        <div class="journey-card">
+          <div class="journey-stage">Stage 1</div>
+          <div class="journey-name">Discovery / Planning</div>
+          <div class="journey-block">
+            <strong>User mindset</strong>
+            <p>Interested in China, but still sees it as complicated and not yet manageable.</p>
+          </div>
+          <div class="journey-block">
+            <strong>Trip.com action</strong>
+            <p>Use TikTok, Instagram, and Google to capture planning intent before users commit to another platform.</p>
+          </div>
+          <div class="journey-kpi">
+            <strong>Barrier removed</strong>
+            <p>Initial complexity and uncertainty.</p>
+          </div>
+        </div>
+        <div class="journey-card">
+          <div class="journey-stage">Stage 2</div>
+          <div class="journey-name">Consideration</div>
+          <div class="journey-block">
+            <strong>User mindset</strong>
+            <p>Worried about complexity, halal fit, logistics, and making costly mistakes.</p>
+          </div>
+          <div class="journey-block">
+            <strong>Trip.com action</strong>
+            <p>Use KOL trust, itinerary structure, and bundle previews to reduce decision anxiety.</p>
+          </div>
+          <div class="journey-kpi">
+            <strong>Barrier removed</strong>
+            <p>Decision fear and trust gap.</p>
+          </div>
+        </div>
+        <div class="journey-card">
+          <div class="journey-stage">Stage 3</div>
+          <div class="journey-name">Conversion</div>
+          <div class="journey-block">
+            <strong>User mindset</strong>
+            <p>Ready to book if the trip feels easier to manage and financially smarter than booking separately.</p>
+          </div>
+          <div class="journey-block">
+            <strong>Trip.com action</strong>
+            <p>Combine bundle savings, simpler planning, and payment flexibility into one clear booking proposition.</p>
+          </div>
+          <div class="journey-kpi">
+            <strong>Barrier removed</strong>
+            <p>Planning effort and price pressure.</p>
+          </div>
+        </div>
+        <div class="journey-card">
+          <div class="journey-stage">Stage 4</div>
+          <div class="journey-name">Post-booking</div>
+          <div class="journey-block">
+            <strong>User mindset</strong>
+            <p>Once the first booking is made, confidence rises and users become more open to completing more of the trip.</p>
+          </div>
+          <div class="journey-block">
+            <strong>Trip.com action</strong>
+            <p>Cross-sell rail after hotel, tickets after rail, and guided tours after destination selection to increase attach rate.</p>
+          </div>
+          <div class="journey-kpi">
+            <strong>Barrier removed</strong>
+            <p>Residual execution friction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section task-hidden" id="campaign-seasonality" data-task="task2">
+    <div class="section-header">
+      <div class="eyebrow">Task 2 · Step 4</div>
+      <h2 class="section-title">Seasonality Strategy</h2>
+      <p class="section-sub">Seasonality changes both user mindset and conversion readiness, so the campaign objective should shift with the calendar.</p>
+    </div>
+    <div class="section-body">
+      <div class="season-grid">
+        <div class="season-card">
+          <div class="season-top">
+            <strong>Ramadan</strong>
+            <div class="season-objective">Plan / inspire</div>
+          </div>
+          <div class="mini-label" style="color:var(--trip-blue);">User mindset</div>
+          <p>Booking slows, but research and future-trip planning increase.</p>
+          <div class="mini-label" style="color:var(--trip-blue);">What to push</div>
+          <p>Inspiration, itinerary examples, and trust-building content rather than hard conversion messaging.</p>
+        </div>
+        <div class="season-card">
+          <div class="season-top">
+            <strong>Eid / Lebaran</strong>
+            <div class="season-objective">Convert demand</div>
+          </div>
+          <div class="mini-label" style="color:var(--trip-blue);">User mindset</div>
+          <p>Accumulated family demand converts quickly once travel windows become concrete.</p>
+          <div class="mini-label" style="color:var(--trip-blue);">What to push</div>
+          <p>Modular family bundles, urgency, and clear booking simplicity for family-led trips.</p>
+        </div>
+        <div class="season-card">
+          <div class="season-top">
+            <strong>Off-peak</strong>
+            <div class="season-objective">Stimulate demand</div>
+          </div>
+          <div class="mini-label" style="color:var(--trip-blue);">User mindset</div>
+          <p>Intent is weaker and users need more financial or flexibility reassurance to commit.</p>
+          <div class="mini-label" style="color:var(--trip-blue);">What to push</div>
+          <p>Price framing, flexible cancellation, and BNPL as demand stimulants.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section task-hidden" id="campaign-metrics" data-task="task2">
+    <div class="section-header">
+      <div class="eyebrow">Task 2 · Step 5</div>
+      <h2 class="section-title">Campaign Metrics</h2>
+      <p class="section-sub">The campaign works only if it drives deeper booking behavior, not just more traffic. Multi-product attach rate is the clearest signal.</p>
+    </div>
+    <div class="section-body">
+      <div class="metric-hero">
+        <div class="mini-label" style="color:var(--trip-blue); margin-bottom:8px;">Most important KPI</div>
+        <div class="metric-hero-value">Multi-product attach rate</div>
+        <div class="because-line">Shows whether users book more of the China trip on Trip.com, rather than treating it as a single booking tool.</div>
+      </div>
+      <div class="metric-support-grid">
+        <div class="metric-card">
+          <strong>Conversion</strong>
+          <ul>
+            <li>Booking conversion rate</li>
+            <li>Landing page → booking rate</li>
+            <li>Necessary, but not sufficient</li>
+          </ul>
+        </div>
+        <div class="metric-card">
+          <strong>Trust proxies</strong>
+          <ul>
+            <li>Halal page engagement</li>
+            <li>Creator / KOL-attributed conversion</li>
+            <li>Signals whether reassurance is working</li>
+          </ul>
+        </div>
+        <div class="metric-card">
+          <strong>Affordability proxies</strong>
+          <ul>
+            <li>BNPL usage</li>
+            <li>Payment success rate</li>
+            <li>Signals whether checkout friction is falling</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const taskButtons = document.querySelectorAll('[data-task-trigger]');
+const taskSections = document.querySelectorAll('[data-task]');
+const taskNavGroups = document.querySelectorAll('[data-task-nav]');
+const navItems = document.querySelectorAll('.nav-item');
+
+let currentTask = 'task1';
+
+function setTask(task) {
+  currentTask = task;
+
+  taskButtons.forEach((button) => {
+    button.classList.toggle('active', button.dataset.taskTrigger === task);
+  });
+
+  taskSections.forEach((section) => {
+    section.classList.toggle('task-hidden', section.dataset.task !== task);
+  });
+
+  taskNavGroups.forEach((group) => {
+    group.classList.toggle('task-hidden', group.dataset.taskNav !== task);
+  });
+
+  const firstVisible = document.querySelector(`[data-task="${task}"]`);
+  if (firstVisible) {
+    const targetId = firstVisible.id;
+    navItems.forEach((item) => item.classList.toggle('active', item.getAttribute('href') === `#${targetId}`));
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+taskButtons.forEach((button) => {
+  button.addEventListener('click', () => setTask(button.dataset.taskTrigger));
+});
+
+const taskSectionIds = {
+  task1: ['scope', 'affordability', 'behavior', 'target', 'pain-strategy', 'proof'],
+  task2: ['campaign-theme', 'campaign-mechanics', 'campaign-journey', 'campaign-seasonality', 'campaign-metrics']
+};
+
+function updateActiveNav() {
+  const visibleIds = taskSectionIds[currentTask];
+  let activeId = visibleIds[0];
+
+  visibleIds.forEach((id) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 160 && rect.bottom >= 160) activeId = id;
+  });
+
+  navItems.forEach((item) => {
+    item.classList.toggle('active', item.getAttribute('href') === `#${activeId}`);
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
+</script>
+</body>
+</html>
